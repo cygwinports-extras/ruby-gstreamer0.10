@@ -1,0 +1,29 @@
+ORIG_PN="gstreamer"
+inherit rubygem
+
+NAME="ruby-gstreamer0.10"
+VERSION=1.2.6
+RELEASE=2
+CATEGORY="Ruby"
+SUMMARY="Ruby GStreamer 0.10 bindings"
+DESCRIPTION="Ruby/GStreamer is a Ruby binding for GStreamer 0.10."
+HOMEPAGE="http://ruby-gnome2.sourceforge.jp/"
+
+PATCH_URI="1.2.6-deprecations.patch"
+
+PKG_NAMES="${NAME} ${NAME}-devel ${NAME}-doc"
+ruby_gstreamer0_10_OBSOLETES="ruby-gstreamer"
+ruby_gstreamer0_10_CONTENTS="--exclude=sample ${RUBYGEM_EXTDIR#/} ${RUBYGEM_INSTDIR#/} ${RUBYGEM_SPEC#/}"
+ruby_gstreamer0_10_devel_REQUIRES=${NAME}
+ruby_gstreamer0_10_devel_CONTENTS="usr/lib/pkgconfig/ruby-gstreamer-0.10.pc"
+ruby_gstreamer0_10_doc_CONTENTS="${RUBYGEM_DOCDIR#/} ${RUBYGEM_INSTDIR#/}/sample/"
+PKG_IGNORE="usr/lib/lib*.a"
+
+DEPS_PATH="${RUBYGEM_EXTDIR%/*}/glib2-*"
+
+src_install() {
+	cd ${S}
+	rubygem_install
+
+	mv ${D}/usr/lib/pkgconfig/ruby-gstreamer{,-0.10}.pc
+}
