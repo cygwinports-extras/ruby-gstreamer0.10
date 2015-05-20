@@ -3,7 +3,7 @@ inherit rubygem
 
 NAME="ruby-gstreamer0.10"
 VERSION=1.2.6
-RELEASE=2
+RELEASE=3
 CATEGORY="Ruby"
 SUMMARY="Ruby GStreamer 0.10 bindings"
 DESCRIPTION="Ruby/GStreamer is a Ruby binding for GStreamer 0.10."
